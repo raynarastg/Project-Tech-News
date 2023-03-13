@@ -5,11 +5,12 @@ import time
 import requests
 
 
+# params = (url, headers, timeout)
 def fetch(url):
     try:
-        response = requests.get(url=url,
-                                headers={"user-agent": "Fake user-agent"},
-                                timeout=3)
+        response = requests.get(url,
+                                {"user-agent": "Fake user-agent"},
+                                3)
         response
         time.sleep(1)
         response.raise_for_status()
