@@ -42,8 +42,8 @@ def scrape_news(html_content):
     writer = selector.css('span.author a::text').get()
     reading_time = int(selector.css(
         '.meta-reading-time::text').get().split(' ')[0])
-    sumary = selector.css('.entry-content p').get()
-    sumary = re.sub('<.*?>', '', sumary).strip()
+    summary = selector.css('.entry-content p').get()
+    summary = re.sub('<.*?>', '', summary).strip()
     category = selector.css('.meta-category .label::text').get()
     return {
         'url': url,
@@ -51,7 +51,7 @@ def scrape_news(html_content):
         'timestamp': timestamp,
         'writer': writer,
         'reading_time': reading_time,
-        'summary': sumary,
+        'summary': summary,
         'category': category
     }
 
