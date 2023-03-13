@@ -33,11 +33,6 @@ def scrape_next_page_link(html_content):
     return selector.css('.next::attr(href)').get()
 
 
-# def generic_get(param, value):
-#     selector = Selector(text=param)
-#     return selector.css(value).get()
-
-
 # Requisito 4
 def scrape_news(html_content):
     selector = Selector(text=html_content)
@@ -59,22 +54,6 @@ def scrape_news(html_content):
         'summary': sumary,
         'category': category
     }
-    # return {
-    #        'url': generic_get(html_content,
-    #                           'link[rel="canonical"]::attr(href)'),
-    #        'title': generic_get(html_content,
-    #                             'h1.entry-title::text'),
-    #        'timestamp': generic_get(html_content,
-    #                                 '.meta-date::text'),
-    #        'writer': generic_get(html_content,
-    #                              'span.author a::text'),
-    #        'reading_time': generic_get(html_content,
-    #                                    'li.meta-reading-time::text'),
-    #        'sumary': generic_get(html_content,
-    #                              'div.entry-content p::text'),
-    #        'category': generic_get(html_content,
-    #                                'li.meta-category .label::text'),
-    # }
 
 
 # Requisito 5
