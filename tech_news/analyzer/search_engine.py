@@ -33,4 +33,9 @@ def search_by_date(date):
 
 # Requisito 9
 def search_by_category(category):
-    """Seu código deve vir aqui"""
+    news_found = []
+    titles = ({"category": {'$regex': category, '$options': 'i'}})
+    notices = search_news(titles)
+    for notice in notices:
+        news_found.append((notice['title'], notice['url']))
+    return news_found
