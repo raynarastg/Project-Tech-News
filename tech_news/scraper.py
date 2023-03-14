@@ -6,6 +6,8 @@ import time
 import requests
 from parsel import Selector
 
+from tech_news.database import create_news
+
 
 # params = (url, headers, timeout)
 def fetch(url):
@@ -58,4 +60,19 @@ def scrape_news(html_content):
 
 # Requisito 5
 def get_tech_news(amount):
-    """Seu código deve vir aqui"""
+    news = []
+    url = 'https://blog.betrybe.com/'
+    while len(news) < amount:
+        response = fetch(url)
+        updates = scrape_updates(response)
+        news.extend(updates)
+        url = scrape_next_page_link(response)
+    arr_news = []
+    for i in news[:amount]:
+        arr_news.append(scrape_news(fetch(i)))
+    create_news(arr_news)
+    return arr_news[:amount]
+
+# fontes acessadas:
+# https://www.freecodecamp.org/portuguese/news/tutorial-de-lacos-while-em-python-exemplos-de-sintaxe-while-true-e-lacos-infinitos/
+# https://www.w3schools.com/python/ref_list_extend.asp
